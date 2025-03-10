@@ -74,3 +74,22 @@
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">ログイン</button>
                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-dark text-white py-4 fixed-bottom">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 TerraGroup Labs All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

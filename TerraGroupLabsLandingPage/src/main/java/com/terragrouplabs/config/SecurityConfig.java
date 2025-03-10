@@ -18,22 +18,18 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests((requests) -> requests
                 // 公開ページへのアクセス許可
-                .requestMatchers("/", "/about", "/service", "/contact/**", "/thankyou", 
-                                 "/css/**", "/js/**", "/images/**", "/login", "/error").permitAll()
+                .requestMatchers("/", "/about", "/service", "/contact/**", "/css/**", "/js/**", "/images/**").permitAll()
                 // 管理者ページは認証が必要
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                // その他のリクエストは認証が必要
                 .anyRequest().authenticated()
             )
+            
             .formLogin((form) -> form
-                .loginPage("/login")  // カスタムログインページ
-                .defaultSuccessUrl("/admin/messages", true)  // ログイン成功後のリダイレクト先
+                .loginPage("/login")
                 .permitAll()
             )
-            .logout((logout) -> logout
-                .logoutSuccessUrl("/")  // ログアウト後のリダイレクト先
-                .permitAll()
-            );
+            .logout((logout) -> logout.permitAll());
+        
 
         return http.build();
     }
