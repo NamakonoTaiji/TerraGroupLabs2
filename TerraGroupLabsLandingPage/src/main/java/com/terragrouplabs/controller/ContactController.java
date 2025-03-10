@@ -7,12 +7,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.terragrouplabs.entity.ContactMessage;
 import com.terragrouplabs.repository.ContactMessageRepository;
+import com.terragrouplabs.service.EmailService;
+import com.terragrouplabs.service.RecaptchaService;
 
 import jakarta.validation.Valid;
 
@@ -30,10 +33,20 @@ public class ContactController {
     }
 
     // 確認画面表示（フォーム送信時）
+    @Autowired
+    private RecaptchaService recaptchaService;
+
     @PostMapping("/contact/confirm")
     public String confirmContactForm(@Valid @ModelAttribute("contactMessage") ContactMessage contactMessage, 
                                   BindingResult bindingResult,
+                                  @RequestParam(name = "g-recaptcha-response", required = false) String recaptchaResponse,
                                   Model model) {
+        
+        // reCAPTCHA検証
+        if (!recaptchaService.verifyRecaptcha(recaptchaResponse)) {
+            model.addAttribute("recaptchaError", "reCAPTCHAの検証に失敗しました。ロボットではないことを確認してください。");
+            return "index";
+        }
         
         // バリデーションエラーがある場合
         if (bindingResult.hasErrors()) {
@@ -52,6 +65,9 @@ public class ContactController {
         return "index";
     }
 
+    @Autowired
+    private EmailService emailService;
+
     // 確認画面から送信処理
     @PostMapping("/contact")
     public String handleContactForm(@ModelAttribute("contactMessage") ContactMessage contactMessage, 
@@ -60,6 +76,9 @@ public class ContactController {
         
         // フォームから受け取ったデータを保存
         repository.save(contactMessage);
+        
+        // メール通知を送信
+        emailService.sendContactNotification(contactMessage);
         
         // セッションにあるフォームデータをクリア
         sessionStatus.setComplete();

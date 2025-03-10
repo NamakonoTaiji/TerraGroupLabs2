@@ -190,6 +190,18 @@
 								<div class="text-center">
 									<button type="submit" class="btn btn-primary">確認画面へ</button>
 								</div>
+
+								<!-- reCAPTCHA JS -->
+								<script src="https://www.google.com/recaptcha/api.js" async
+									defer></script>
+
+								<!-- フォーム内に追加 -->
+								<div class="mb-3">
+									<div class="g-recaptcha" data-sitekey="${recaptchaSiteKey}"></div>
+									<c:if test="${not empty recaptchaError}">
+										<div class="text-danger">${recaptchaError}</div>
+									</c:if>
+								</div>
 							</form:form>
 						</div>
 					</div>
