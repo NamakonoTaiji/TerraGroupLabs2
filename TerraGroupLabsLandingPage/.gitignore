@@ -34,7 +34,6 @@ build/
 
 # 機密情報を含むファイル
 src/main/resources/application-dev.properties
-src/main/resources/application-prod.properties
 
 # すでに追跡されているファイルが修正されても無視するため
 git update-index --assume-unchanged src/main/resources/application-dev.properties

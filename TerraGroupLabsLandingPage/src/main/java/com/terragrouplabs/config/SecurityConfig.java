@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,30 +16,34 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                // 公開ページへのアクセス許可
-                .requestMatchers("/", "/about", "/service", "/contact/**", "/css/**", "/js/**", "/images/**").permitAll()
-                // 管理者ページは認証が必要
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                // 静的リソースとログインページをすべて公開
+                .requestMatchers(
+                    "/", "/index", "/about", "/service", 
+                    "/contact/**", "/thankyou", "/css/**", 
+                    "/js/**", "/images/**", "/login", "/error"
+                ).permitAll()
+                // 管理者ページだけ認証必要
+                .requestMatchers("/admin/**").hasRole("ADMIN") // authenticated()からhasRole("ADMIN")に変更
+                // その他のリクエストはすべて許可
+                .anyRequest().permitAll()
             )
-            
             .formLogin((form) -> form
                 .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
-            )
-            .logout((logout) -> logout.permitAll());
+            );
         
-
         return http.build();
     }
-
+    
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails admin = User.withDefaultPasswordEncoder()
-            .username("admin")
-            .password("adminpass")
+        UserDetails user = org.springframework.security.core.userdetails.User
+            .withUsername("admin")
+            .password("{noop}password") // 開発環境用の平文パスワード
             .roles("ADMIN")
             .build();
-        return new InMemoryUserDetailsManager(admin);
+        return new InMemoryUserDetailsManager(user);
     }
 }
