@@ -17,22 +17,11 @@ public class RecaptchaService {
 
     @Value("${google.recaptcha.secret}")
     private String recaptchaSecret;
-    private boolean testingEnabled;
     
     private static final String RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
     
     public boolean verifyRecaptcha(String recaptchaResponse) {
-        // 開発環境でのテスト用にバイパスを追加
-        if (testingEnabled) {
-            System.out.println("reCAPTCHA testing mode enabled - verification bypassed");
-            return true;
-        }
-        
-        // 以下は元のコード
-        if (recaptchaResponse == null || recaptchaResponse.isEmpty()) {
-            System.out.println("reCAPTCHA response is null or empty");
-            return false;
-        }
+    	
         if (recaptchaResponse == null || recaptchaResponse.isEmpty()) {
             System.out.println("reCAPTCHA response is null or empty");
             return false;

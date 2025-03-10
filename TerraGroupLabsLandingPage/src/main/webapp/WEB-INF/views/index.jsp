@@ -197,7 +197,7 @@
 
 								<!-- フォーム内に追加 -->
 								<div class="mb-3">
-									<div class="g-recaptcha" data-sitekey="${recaptchaSiteKey}"></div>
+									<div class="g-recaptcha" data-sitekey="<c:out value='${recaptchaSiteKey}' />"></div>
 									<c:if test="${not empty recaptchaError}">
 										<div class="text-danger">${recaptchaError}</div>
 									</c:if>
