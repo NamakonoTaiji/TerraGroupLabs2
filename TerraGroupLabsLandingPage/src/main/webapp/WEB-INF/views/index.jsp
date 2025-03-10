@@ -145,7 +145,8 @@
 					<div class="card">
 						<div class="card-body">
 							<!-- Spring Form タグライブラリを使用 -->
-							<form:form action="${pageContext.request.contextPath}/contact"
+							<form:form
+								action="${pageContext.request.contextPath}/contact/confirm"
 								method="post" modelAttribute="contactMessage">
 
 								<!-- CSRFトークンは自動的に追加されます -->
@@ -187,7 +188,7 @@
 								</div>
 
 								<div class="text-center">
-									<button type="submit" class="btn btn-primary">送信</button>
+									<button type="submit" class="btn btn-primary">確認画面へ</button>
 								</div>
 							</form:form>
 						</div>

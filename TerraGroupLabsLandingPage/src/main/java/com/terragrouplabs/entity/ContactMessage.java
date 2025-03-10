@@ -1,6 +1,8 @@
 package com.terragrouplabs.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -12,8 +14,10 @@ import jakarta.validation.constraints.Size;
 @Table(name = "contact_messages")
 public class ContactMessage {
 
-    @Id
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 
     @NotBlank(message = "名前は必須です")
     @Size(max = 100, message = "名前は100文字以内で入力してください")
