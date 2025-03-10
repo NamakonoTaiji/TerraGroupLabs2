@@ -62,7 +62,7 @@
 					<div class="card h-100 service-card">
 						<div class="card-body text-center">
 							<div class="service-icon mb-3">
-								<i class="bi bi-molecule"></i>
+								<i class="bi bi-fingerprint"></i>
 							</div>
 							<h3 class="card-title">バイオテクノロジー</h3>
 							<p class="card-text">持続可能な未来のための生体技術研究と開発を行っています。環境に優しい素材開発や医療応用など、幅広い分野での革新を目指しています。</p>
