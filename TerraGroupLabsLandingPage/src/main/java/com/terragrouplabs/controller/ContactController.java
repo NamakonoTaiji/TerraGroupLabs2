@@ -42,20 +42,24 @@ public class ContactController {
                                   @RequestParam(name = "g-recaptcha-response", required = false) String recaptchaResponse,
                                   Model model) {
         
+        // デバッグ情報を追加
+        System.out.println("reCAPTCHA Response: " + recaptchaResponse);
+        
         // reCAPTCHA検証
-        if (!recaptchaService.verifyRecaptcha(recaptchaResponse)) {
+        boolean verified = recaptchaService.verifyRecaptcha(recaptchaResponse);
+        System.out.println("reCAPTCHA Verified: " + verified);
+        
+        if (!verified) {
             model.addAttribute("recaptchaError", "reCAPTCHAの検証に失敗しました。ロボットではないことを確認してください。");
             return "index";
         }
         
-        // バリデーションエラーがある場合
+        // 以下は元のコード
         if (bindingResult.hasErrors()) {
-            // エラー情報をモデルに追加してフォームを再表示
             model.addAttribute("validationErrors", bindingResult.getAllErrors());
-            return "index"; // エラーメッセージと共にフォームを再表示
+            return "index";
         }
         
-        // 確認画面に進む
         return "confirm";
     }
     
