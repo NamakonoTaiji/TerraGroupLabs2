@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!-- フッター -->
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container text-center">
