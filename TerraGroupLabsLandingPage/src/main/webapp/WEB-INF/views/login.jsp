@@ -3,93 +3,109 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン - TerraGroup Labs</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <!-- カスタムCSS -->
-    <link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ログイン - TerraGroup Labs</title>
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<!-- カスタムCSS -->
+<link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono&display=swap"
+	rel="stylesheet">
 </head>
 <body>
-    <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="<c:url value='/'/>">
-                <img src="<c:url value='/images/logo.svg'/>" alt="TerraGroup Labs" height="40">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/'/>">ホーム</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/service'/>">サービス</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/about'/>">会社概要</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/#contact'/>">お問い合わせ</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<!-- ナビゲーションバー -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="<c:url value='/'/>"> <img
+				src="<c:url value='/images/logo.svg'/>" alt="TerraGroup Labs"
+				height="40">
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value='/'/>">ホーム</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value='/service'/>">サービス</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value='/about'/>">会社概要</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value='/#contact'/>">お問い合わせ</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <!-- ログインフォーム -->
-    <section class="py-5 mt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-5">
-                            <h2 class="text-center mb-4">管理者ログイン</h2>
-                            
-                            <!-- エラーメッセージ表示 -->
-                            <c:if test="${param.error != null}">
-                                <div class="alert alert-danger" role="alert">
-                                    ユーザー名またはパスワードが正しくありません。
-                                </div>
-                            </c:if>
-                            
-                            <c:if test="${param.logout != null}">
-                                <div class="alert alert-success" role="alert">
-                                    ログアウトしました。
-                                </div>
-                            </c:if>
-                            
-                            <!-- ログインフォーム -->
-                            <form action="<c:url value='/login'/>" method="post">
-                                <!-- CSRF対策トークン（Spring Securityが自動で追加） -->
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">ユーザー名</label>
-                                    <input type="text" id="username" name="username" class="form-control" required autofocus>
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">パスワード</label>
-                                    <input type="password" id="password" name="password" class="form-control" required>
-                                </div>
-                                
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary">ログイン</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	<!-- ログインフォーム -->
+	<section class="py-5 mt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="card border-0 shadow-sm">
+						<div class="card-body p-5">
+							<h2 class="text-center mb-4">管理者ログイン</h2>
 
-    <!-- フッター -->
-    <footer class="bg-dark text-white py-4 fixed-bottom">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2025 TerraGroup Labs All Rights Reserved.</p>
-        </div>
-    </footer>
+							<!-- エラーメッセージ表示 -->
+							<c:if test="${param.error != null}">
+								<div class="alert alert-danger" role="alert">
+									ユーザー名またはパスワードが正しくありません。</div>
+							</c:if>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+							<c:if test="${param.logout != null}">
+								<div class="alert alert-success" role="alert">ログアウトしました。</div>
+							</c:if>
+
+							<!-- ログインフォーム -->
+							<form action="<c:url value='/login'/>" method="post">
+								<!-- CSRF対策トークン（Spring Securityが自動で追加） -->
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+
+								<div class="mb-3">
+									<label for="username" class="form-label">ユーザー名</label> <input
+										type="text" id="username" name="username" class="form-control"
+										required autofocus>
+								</div>
+
+								<div class="mb-3">
+									<label for="password" class="form-label">パスワード</label> <input
+										type="password" id="password" name="password"
+										class="form-control" required>
+								</div>
+
+								<div class="d-grid gap-2">
+									<button type="submit" class="btn btn-primary">ログイン</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- フッター -->
+	<footer class="bg-dark text-white py-4 fixed-bottom">
+		<div class="container text-center">
+			<p class="mb-0">&copy; 2025 TerraGroup Labs All Rights Reserved.</p>
+		</div>
+	</footer>
+
+	<!-- Bootstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

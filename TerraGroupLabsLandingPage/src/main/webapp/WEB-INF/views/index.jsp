@@ -10,16 +10,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TerraGroup Labs - 地球の未来をテクノロジーで創造する</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono&display=swap"
+	rel="stylesheet">
+
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
 <!-- カスタムCSS -->
 <link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
 </head>
 <body>
 	<!-- ナビゲーションバー -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+	<nav
+		class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top terra-nav">
 		<div class="container">
 			<a class="navbar-brand" href="<c:url value='/'/>"> <img
 				src="<c:url value='/images/logo.svg'/>" alt="TerraGroup Labs"
@@ -31,184 +45,119 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link active"
+					<li class="nav-item"><a class="nav-link active terra-nav-link"
 						href="<c:url value='/'/>">ホーム</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item"><a class="nav-link terra-nav-link"
 						href="<c:url value='/service'/>">サービス</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item"><a class="nav-link terra-nav-link"
 						href="<c:url value='/about'/>">会社概要</a></li>
-					<li class="nav-item"><a class="nav-link" href="#contact">お問い合わせ</a>
-					</li>
+					<li class="nav-item"><a class="nav-link terra-nav-link"
+						href="#contact">お問い合わせ</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 	<!-- ヒーローセクション -->
-	<header class="hero-section d-flex align-items-center">
+	<header class="hero-section">
 		<div class="container text-center">
-			<h1 class="display-4 text-white">地球の未来をテクノロジーで創造する</h1>
-			<p class="lead text-white">持続可能な社会の実現に向けた革新的な技術開発</p>
-			<a href="#services" class="btn btn-lg btn-primary mt-3">詳細はこちら</a>
+			<h1 class="display-title mb-4 animate-fade-in">地球の未来をテクノロジーで創造する</h1>
+			<p class="lead mb-5 animate-fade-in-delayed">持続可能な社会の実現に向けた革新的な技術開発</p>
+			<a href="#services"
+				class="btn btn-lg terra-btn-primary animate-fade-in-delayed-more">詳細はこちら
+				<i class="bi bi-arrow-right ms-2"></i>
+			</a>
 		</div>
 	</header>
 
 	<!-- サービスセクション -->
-	<section id="services" class="py-5">
+	<section id="services" class="section bg-light">
 		<div class="container">
-			<h2 class="text-center mb-5">サービス一覧</h2>
-			<div class="row">
-				<div class="col-md-4 mb-4">
-					<div class="card h-100 service-card">
-						<div class="card-body text-center">
-							<div class="service-icon mb-3">
-								<i class="bi bi-fingerprint"></i>
+			<div class="text-center mb-5">
+				<span class="badge bg-primary px-3 py-2 rounded-pill mb-3">OUR
+					SERVICES</span>
+				<h2 class="display-5 fw-bold">革新的な技術ソリューション</h2>
+				<p class="lead text-muted">最先端の研究と開発で、より良い未来を創造します</p>
+			</div>
+
+			<div class="row g-4">
+				<!-- エネルギー部門 -->
+				<div class="col-md-4">
+					<div class="terra-card h-100">
+						<img src="<c:url value='/images/energy-tech.jpg'/>"
+							class="card-img-top" alt="エネルギー技術">
+						<div class="card-body p-4">
+							<div class="service-icon mb-4">
+								<i class="bi bi-lightning-charge-fill"></i>
 							</div>
-							<h3 class="card-title">バイオテクノロジー</h3>
-							<p class="card-text">持続可能な未来のための生体技術研究と開発を行っています。環境に優しい素材開発や医療応用など、幅広い分野での革新を目指しています。</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 mb-4">
-					<div class="card h-100 service-card">
-						<div class="card-body text-center">
-							<div class="service-icon mb-3">
-								<i class="bi bi-cpu"></i>
+							<h3>エネルギー技術</h3>
+							<p>次世代のクリーンエネルギー技術で持続可能な社会の実現を目指します。核融合研究「Project
+								Helios」や次世代太陽光パネルなど、革新的なエネルギーソリューションを開発しています。</p>
+							<div class="mt-auto pt-3">
+								<a href="<c:url value='/service/energy'/>"
+									class="btn terra-btn-outline"> 詳細を見る <i
+									class="bi bi-arrow-right ms-2"></i>
+								</a>
 							</div>
-							<h3 class="card-title">AI研究</h3>
-							<p class="card-text">最先端の人工知能と機械学習技術の研究開発を通じて、複雑な環境問題の解決や効率的なリソース管理システムの構築に取り組んでいます。</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 mb-4">
-					<div class="card h-100 service-card">
-						<div class="card-body text-center">
-							<div class="service-icon mb-3">
-								<i class="bi bi-tree"></i>
+
+				<!-- 防衛部門 -->
+				<div class="col-md-4">
+					<div class="terra-card h-100">
+						<img src="<c:url value='/images/defence-tech.jpg'/>"
+							class="card-img-top" alt="エネルギー技術">
+						<div class="card-body p-4">
+							<div class="service-icon mb-4">
+								<i class="bi bi-shield-lock-fill"></i>
 							</div>
-							<h3 class="card-title">環境テクノロジー</h3>
-							<p class="card-text">地球環境保全のための革新的技術開発に取り組んでいます。カーボンニュートラルな社会の実現に向けた様々なソリューションを提供します。</p>
+							<h3>防衛システム</h3>
+							<p>高度なセキュリティと防衛技術で社会の安全を守ります。無人戦闘システム「TG-Sentinel」や特殊装備の開発を通じて、最先端の防衛ソリューションを提供しています。</p>
+							<div class="mt-auto pt-3">
+								<a href="<c:url value='/service/defense'/>"
+									class="btn terra-btn-outline"> 詳細を見る <i
+									class="bi bi-arrow-right ms-2"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- バイオテクノロジー部門 -->
+				<div class="col-md-4">
+					<div class="terra-card h-100">
+						<img src="<c:url value='/images/bio-tech.jpg'/>"
+							class="card-img-top" alt="エネルギー技術">
+						<div class="card-body p-4">
+							<div class="service-icon mb-4">
+								<i class="bi bi-virus"></i>
+							</div>
+							<h3>バイオテクノロジー</h3>
+							<p>生命科学の革新的研究により、人類の健康と環境の未来を切り拓きます。遺伝子治療「GeneLock」や極限環境耐性生物の研究など、最先端のバイオテクノロジーを探求しています。</p>
+							<div class="mt-auto pt-3">
+								<a href="<c:url value='/service/biotech'/>"
+									class="btn terra-btn-outline"> 詳細を見る <i
+									class="bi bi-arrow-right ms-2"></i>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
 
-	<!-- 実績セクション -->
-	<section id="achievements" class="py-5 bg-light">
-		<div class="container">
-			<h2 class="text-center mb-5">実績</h2>
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="card">
-						<div class="card-body">
-							<canvas id="achievementChart"></canvas>
-						</div>
-					</div>
-				</div>
+			<!-- 企業スローガン -->
+			<div class="text-center mt-5">
+				<p class="lead fw-bold">"Innovating Tomorrow, Securing Today"</p>
+				<a href="<c:url value='/service'/>"
+					class="btn terra-btn-primary mt-3"> すべてのサービスを見る <i
+					class="bi bi-arrow-right ms-2"></i>
+				</a>
 			</div>
 		</div>
 	</section>
 
-	<!-- 企業理念セクション -->
-	<section id="philosophy" class="py-5">
-		<div class="container">
-			<h2 class="text-center mb-5">企業理念</h2>
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="card">
-						<div class="card-body">
-							<p class="lead text-center">TerraGroup
-								Labsは、持続可能な未来のためのテクノロジー開発を通じて、 地球環境と人類の共存を目指します。私たちは、革新的な研究開発と
-								社会実装を通じて、より良い社会の構築に貢献します。</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- お問い合わせフォーム -->
-	<section id="contact" class="py-5 bg-light">
-		<div class="container">
-			<h2 class="text-center mb-5">お問い合わせ</h2>
-
-			<!-- 送信成功メッセージ -->
-			<c:if test="${not empty successMessage}">
-				<div class="alert alert-success" role="alert">
-					${successMessage}</div>
-			</c:if>
-
-			<div class="row justify-content-center">
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<!-- Spring Form タグライブラリを使用 -->
-							<form:form
-								action="${pageContext.request.contextPath}/contact/confirm"
-								method="post" modelAttribute="contactMessage">
-
-								<!-- CSRFトークンは自動的に追加されます -->
-
-								<div class="mb-3">
-									<form:label path="name" class="form-label">お名前</form:label>
-									<c:set var="hasNameError">
-										<form:errors path="name" />
-									</c:set>
-									<form:input path="name"
-										class="form-control${not empty hasNameError ? ' is-invalid' : ''}"
-										htmlEscape="true" />
-									<form:errors path="name" cssClass="invalid-feedback"
-										htmlEscape="true" />
-								</div>
-
-								<div class="mb-3">
-									<form:label path="email" class="form-label">メールアドレス</form:label>
-									<c:set var="hasEmailError">
-										<form:errors path="email" />
-									</c:set>
-									<form:input path="email"
-										class="form-control${not empty hasEmailError ? ' is-invalid' : ''}"
-										htmlEscape="true" />
-									<form:errors path="email" cssClass="invalid-feedback"
-										htmlEscape="true" />
-								</div>
-
-								<div class="mb-3">
-									<form:label path="message" class="form-label">お問い合わせ内容</form:label>
-									<c:set var="hasMessageError">
-										<form:errors path="message" />
-									</c:set>
-									<form:textarea path="message"
-										class="form-control${not empty hasMessageError ? ' is-invalid' : ''}"
-										rows="5" htmlEscape="true" />
-									<form:errors path="message" cssClass="invalid-feedback"
-										htmlEscape="true" />
-								</div>
-
-								<div class="text-center">
-									<button type="submit" class="btn btn-primary">確認画面へ</button>
-								</div>
-
-								<!-- reCAPTCHA JS -->
-								<script src="https://www.google.com/recaptcha/api.js" async
-									defer></script>
-
-								<!-- フォーム内に追加 -->
-								<div class="mb-3">
-									<div class="g-recaptcha" data-sitekey="<c:out value='${recaptchaSiteKey}' />"></div>
-									<c:if test="${not empty recaptchaError}">
-										<div class="text-danger">${recaptchaError}</div>
-									</c:if>
-								</div>
-							</form:form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	<!-- その他のセクション... -->
 
 	<!-- フッター -->
 	<footer class="bg-dark text-white py-4">
@@ -225,12 +174,85 @@
 	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Bootstrap Icons -->
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-	<!-- Chart.js -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<!-- カスタムJS -->
-	<script src="<c:url value='/js/main.js'/>"></script>
+
+	<!-- アニメーション用のカスタムCSS追加 -->
+	<style>
+.animate-fade-in {
+	opacity: 0;
+	animation: fadeIn 1s ease-in-out forwards;
+}
+
+.animate-fade-in-delayed {
+	opacity: 0;
+	animation: fadeIn 1s ease-in-out 0.3s forwards;
+}
+
+.animate-fade-in-delayed-more {
+	opacity: 0;
+	animation: fadeIn 1s ease-in-out 0.6s forwards;
+}
+
+@
+keyframes fadeIn {from { opacity:0;
+	transform: translateY(20px);
+}
+
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+}
+</style>
+
+	<!-- ナビゲーションバーのスクロール効果用のJS -->
+	<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const nav = document.querySelector('.terra-nav');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+      
+      // スムーズスクロール
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+
+ // サービスカードのスクロールアニメーション
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.terra-card');
+      cards.forEach(card => {
+        card.classList.add('animate-on-scroll');
+        observer.observe(card);
+      });
+    });
+  </script>
 </body>
 </html>
