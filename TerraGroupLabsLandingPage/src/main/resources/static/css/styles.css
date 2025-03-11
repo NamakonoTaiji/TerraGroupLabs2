@@ -172,7 +172,37 @@ code, pre {
 .navbar {
   box-shadow: var(--shadow-sm);
 }
+/* ナビゲーションバーの高さ調整 - 既存のスタイルを強化 */
+.navbar.terra-nav {
+  padding: 1.2rem 0;
+  transition: all 0.3s ease;
+  will-change: padding, height; /* パフォーマンス向上のためのヒント */
+}
 
+.navbar.terra-nav .navbar-brand img {
+  height: 50px;
+  transition: height 0.3s ease;
+  will-change: height;
+}
+
+.navbar.terra-nav.scrolled {
+  padding: 0.5rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.terra-nav.scrolled .navbar-brand img {
+  height: 35px;
+}
+
+/* ナビゲーションリンクも調整 */
+.navbar.terra-nav .nav-link {
+  padding: 0.5rem 1rem;
+  transition: padding 0.3s ease;
+}
+
+.navbar.terra-nav.scrolled .nav-link {
+  padding: 0.4rem 1rem;
+}
 .terra-nav {
   position: fixed;
   top: 0;

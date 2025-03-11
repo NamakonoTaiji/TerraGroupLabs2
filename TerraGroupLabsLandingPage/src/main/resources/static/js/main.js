@@ -1,27 +1,38 @@
-// main.js を整理
-// 即時実行関数式（IIFE）でスコープを分離
-(function() {
-	// DOM読み込み完了時の処理
-	document.addEventListener('DOMContentLoaded', function() {
-		// 機能ごとに関数として分離
-		initNavigation();
-		initScrollEffects();
-		initFormValidation();
-		initCharts();
-	});
 
-	// ナビゲーション関連の初期化
-	function initNavigation() {
-		const nav = document.querySelector('.terra-nav');
-		if (nav) {
-			window.addEventListener('scroll', function() {
-				if (window.scrollY > 50) {
-					nav.classList.add('scrolled');
-				} else {
-					nav.classList.remove('scrolled');
-				}
-			});
-		}
+// 即時実行関数式（IIFE）でスコープを分離
+// IIFE（即時実行関数）の外にコンソールログを追加して実行確認
+console.log('main.js loaded');
+
+(function() {
+    // DOM読み込み完了時の処理
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded');
+        // 機能ごとに関数として分離
+        initNavigation();
+        initScrollEffects();
+        initFormValidation();
+        initCharts();
+    });
+
+    function initNavigation() {
+        console.log('initNavigation called');
+        const nav = document.querySelector('.navbar.terra-nav');
+        console.log('Navigation element found:', nav);
+        
+        if (nav) {
+            window.addEventListener('scroll', function() {
+                // スクロール位置をログに出力
+                console.log('Window scrollY:', window.scrollY);
+                
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                    console.log('Added scrolled class');
+                } else {
+                    nav.classList.remove('scrolled');
+                    console.log('Removed scrolled class');
+                }
+            });
+        }
 
 		// スムーズスクロール
 		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
