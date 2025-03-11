@@ -1,4 +1,6 @@
-/* リセットスタイル */
+/* ==========================================================================
+   1. リセットスタイル
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -11,8 +13,11 @@ img {
   display: block;
 }
 
-/* CSS変数定義 */
+/* ==========================================================================
+   2. CSS変数定義
+   ========================================================================== */
 :root {
+  /* カラーパレット */
   /* プライマリーカラー - 青のバリエーション */
   --primary-dark: #001E37;   /* 濃い青 - テキストや重要な要素 */
   --primary: #0056B3;        /* メインの青 - ボタンやアクセント */
@@ -31,6 +36,7 @@ img {
   --danger: #FF3B30;        /* 赤 - エラーや警告 */
   --success: #28A745;       /* 緑 - 成功メッセージ */
 
+  /* タイポグラフィ */
   /* フォントファミリー */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-secondary: 'Space Grotesk', sans-serif;
@@ -54,6 +60,7 @@ img {
   --leading-normal: 1.5;
   --leading-relaxed: 1.75;
 
+  /* レイアウト */
   /* スペーシング変数 */
   --spacing-0: 0;
   --spacing-1: 0.25rem;  /* 4px */
@@ -74,6 +81,7 @@ img {
   --section-spacing: var(--spacing-24);
   --subsection-spacing: var(--spacing-16);
 
+  /* 外観 */
   /* 角丸 */
   --radius-sm: 0.125rem;   /* 2px */
   --radius-md: 0.25rem;    /* 4px */
@@ -88,7 +96,9 @@ img {
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* 基本要素のスタイル */
+/* ==========================================================================
+   3. 基本要素のスタイル
+   ========================================================================== */
 body {
   font-family: var(--font-primary);
   font-size: var(--text-base);
@@ -125,7 +135,9 @@ code, pre {
   font-family: var(--font-monospace);
 }
 
-/* レイアウトクラス */
+/* ==========================================================================
+   4. レイアウトクラス
+   ========================================================================== */
 .container {
   padding-left: var(--spacing-4);
   padding-right: var(--spacing-4);
@@ -141,8 +153,22 @@ code, pre {
   background-color: var(--off-white);
 }
 
-/* コンポーネントのスタイル */
-/* ナビゲーション */
+/* サービスセクション全体の余白調整 */
+#services {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* サービスカード間の間隔 */
+.row.g-4 {
+  margin-bottom: 3rem;
+}
+
+/* ==========================================================================
+   5. コンポーネントスタイル
+   ========================================================================== */
+
+/* 5.1 ナビゲーション */
 .navbar {
   box-shadow: var(--shadow-sm);
 }
@@ -152,7 +178,7 @@ code, pre {
   top: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-4) 0;
+  padding: var(--spacing-1) 0;
   z-index: 1000;
   transition: background-color 0.3s ease, padding 0.3s ease;
 }
@@ -163,12 +189,25 @@ code, pre {
   padding: var(--spacing-2) 0;
 }
 
-.terra-nav-link {
-  color: var(--primary);
+.terra-nav-link, 
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--white) !important;
   font-weight: 500;
   padding: var(--spacing-2) var(--spacing-4);
   position: relative;
   transition: color 0.3s ease;
+}
+
+.terra-nav-link:hover, 
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: var(--light-gray) !important;
+}
+
+.terra-nav-link.active, 
+.navbar-dark .navbar-nav .nav-link.active {
+  color: var(--white) !important;
+  font-weight: 700;
 }
 
 .terra-nav-link::after {
@@ -187,8 +226,9 @@ code, pre {
   left: 0;
 }
 
-/* ボタン */
-.btn-primary, .terra-btn-primary {
+/* 5.2 ボタン */
+.btn-primary, 
+.terra-btn-primary {
   background-color: var(--primary);
   color: var(--white);
   border-color: var(--primary);
@@ -202,7 +242,8 @@ code, pre {
   justify-content: center;
 }
 
-.btn-primary:hover, .terra-btn-primary:hover {
+.btn-primary:hover, 
+.terra-btn-primary:hover {
   background-color: var(--primary-dark);
   border-color: var(--primary-dark);
   transform: translateY(-2px);
@@ -235,7 +276,38 @@ code, pre {
   color: var(--white);
 }
 
-/* サービスカードの追加スタイル */
+/* 5.3 カードとサービス */
+.terra-card {
+  height: 100%;
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.terra-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.terra-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.terra-card .card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.terra-card .mt-auto {
+  margin-top: auto;
+}
+
 .terra-card .service-icon {
   display: inline-flex;
   align-items: center;
@@ -243,7 +315,7 @@ code, pre {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: rgba(0, 86, 179, 0.1); /* primary color with opacity */
+  background-color: rgba(0, 86, 179, 0.1);
   color: var(--primary);
   font-size: 2rem;
   transition: all 0.3s ease;
@@ -275,49 +347,7 @@ code, pre {
 .terra-card:hover h3::after {
   width: 100px;
 }
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
 
-.fade-in-up {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* バッジスタイル */
-.badge {
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-
-/* ボタンの位置調整 */
-.terra-card .card-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* 背景色の微調整 */
-.bg-light {
-  background-color: var(--off-white) !important;
-}
-/* ヒーローセクション */
-.hero-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  min-height: 500px;
-  color: var(--white);
-  display: flex;
-  align-items: center;
-}
-
-/* サービス */
 .service-icon {
   font-size: 3rem;
   color: var(--primary);
@@ -332,14 +362,26 @@ code, pre {
   color: var(--primary);
 }
 
-/* お問い合わせフォーム */
+/* 5.4 ヒーローセクション */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  min-height: 500px;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+}
+
+/* 5.5 フォーム */
 #contact .card {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
 }
 
-/* タイムライン */
+/* 5.6 タイムライン */
 .timeline {
   position: relative;
   padding: 20px 0;
@@ -377,7 +419,39 @@ code, pre {
   transform: translateX(-50%);
 }
 
-/* ユーティリティクラス */
+/* ==========================================================================
+   6. アニメーション
+   ========================================================================== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-in-delayed-more {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.6s forwards;
+  transition: opacity 1s ease-in-out 0.6s, transform 1s ease-in-out 0.6s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-section:hover .animate-fade-in-delayed-more {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   7. ユーティリティクラス
+   ========================================================================== */
 .display-title {
   font-size: var(--text-6xl);
   font-weight: 700;
@@ -392,7 +466,20 @@ code, pre {
   background-color: var(--primary) !important;
 }
 
-/* メディアクエリ */
+.bg-light {
+  background-color: var(--off-white) !important;
+}
+
+.badge {
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   8. メディアクエリ
+   ========================================================================== */
 @media (max-width: 768px) {
   .section {
     padding-top: var(--spacing-16);
