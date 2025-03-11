@@ -40,6 +40,7 @@ public class ContactController {
     public String confirmContactForm(@Valid @ModelAttribute("contactMessage") ContactMessage contactMessage, 
                                   BindingResult bindingResult,
                                   @RequestParam(name = "g-recaptcha-response", required = false) String recaptchaResponse,
+                                  RedirectAttributes redirectAttributes,
                                   Model model) {
         
         // デバッグ情報を追加
@@ -50,11 +51,16 @@ public class ContactController {
         System.out.println("reCAPTCHA Verified: " + verified);
         
         if (!verified) {
-            model.addAttribute("recaptchaError", "reCAPTCHAの検証に失敗しました。ロボットではないことを確認してください。");
-            return "index";
+            // reCAPTCHAエラーメッセージをリダイレクト属性として設定
+            redirectAttributes.addFlashAttribute("recaptchaError", "reCAPTCHAの検証に失敗しました。ロボットではないことを確認してください。");
+            redirectAttributes.addFlashAttribute("contactMessage", contactMessage);
+            // バリデーションエラーフラグを設定
+            redirectAttributes.addFlashAttribute("hasError", true);
+            
+            // コンタクトフォームアンカーへリダイレクト
+            return "redirect:/#contact";
         }
         
-        // 以下は元のコード
         if (bindingResult.hasErrors()) {
             model.addAttribute("validationErrors", bindingResult.getAllErrors());
             return "index";

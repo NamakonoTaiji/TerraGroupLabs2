@@ -285,7 +285,16 @@ code, pre {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
 }
-
+/* サービスカードのレスポンシブ調整 */
+@media (max-width: 576px) {
+  .terra-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .service-icon-large {
+    font-size: 3rem;
+  }
+}
 .terra-card:hover {
   transform: translateY(-10px);
   box-shadow: var(--shadow-lg);
@@ -373,7 +382,20 @@ code, pre {
   display: flex;
   align-items: center;
 }
-
+/* ヒーローセクションのレスポンシブ調整 */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 0;
+  }
+  
+  .hero-section .display-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+}
 /* 5.5 フォーム */
 #contact .card {
   border-radius: var(--radius-lg);
@@ -418,7 +440,192 @@ code, pre {
   left: 50%;
   transform: translateX(-50%);
 }
+/* お問い合わせフォームのスタイル */
+#contact .card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+#contact .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#contact .input-group-text {
+  background-color: var(--primary);
+  color: white;
+  border: 1px solid var(--primary);
+}
+
+#contact .form-control:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+}
+/* ナビゲーションバーの高さ調整 */
+.terra-nav {
+  padding: 1.2rem 0;
+  transition: all 0.3s ease;
+}
+
+.terra-nav .navbar-brand img {
+  height: 50px;
+  transition: height 0.3s ease;
+}
+
+.terra-nav.scrolled {
+  padding: 0.5rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.terra-nav.scrolled .navbar-brand img {
+  height: 35px;
+}
+
+/* ナビゲーションリンクも調整 */
+.terra-nav .nav-link {
+  padding: 0.5rem 1rem;
+  transition: padding 0.3s ease;
+}
+
+.terra-nav.scrolled .nav-link {
+  padding: 0.4rem 1rem;
+}
+/* reCAPTCHAが小さい画面ではみ出すのを防ぐ */
+.g-recaptcha {
+	margin-bottom: 1rem;
+	display: inline-block;
+  	transform-origin: left top;
+  	transform: scale(0.95);
+}
+.g-recaptcha.error {
+  border: 1px solid #dc3545;
+  animation: shake 0.5s ease-in-out;
+  border-radius: 4px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+@media (max-width: 400px) {
+  .g-recaptcha {
+    transform: scale(0.85);
+  }
+}
+
+/* タイムラインセクション */
+.timeline {
+  padding: 20px 0;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+}
+
+/* チームセクション */
+.team-card {
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.team-overlay {
+  transition: opacity 0.3s ease;
+}
+
+.team-card:hover .team-overlay {
+  opacity: 1 !important;
+}
+
+/* カラー変数の追加 */
+:root {
+  --primary-light: rgba(0, 86, 179, 0.1);
+}
+
+/* ニュースカード */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.btn-link {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.btn-link:hover {
+  color: var(--primary-dark);
+}
+  .invalid-feedback, .text-danger {
+    display: block;
+    color: #dc3545;
+    font-weight: 500;
+    padding-top: 0.5rem;
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  .is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+  
+  /* エラーアイコンを追加 */
+  .is-invalid + .invalid-feedback::before {
+    content: "⚠️ ";
+  }
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+  .timeline-item {
+    margin-bottom: 20px;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .timeline-item {
+    padding: 15px;
+  }
+  
+  .display-4 {
+    font-size: 2rem;
+  }
+}
 /* ==========================================================================
    6. アニメーション
    ========================================================================== */

@@ -55,33 +55,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-// main.js に追加
+
+// 既存のmain.jsファイルに追加
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const messageInput = document.getElementById('message');
-        
-        // 名前フィールドのバリデーション
-        nameInput.addEventListener('blur', function() {
-            if (this.value.trim() === '') {
-                this.classList.add('is-invalid');
-            } else {
-                this.classList.remove('is-invalid');
-                this.classList.add('is-valid');
-            }
-        });
-        
-        // メールフィールドのバリデーション
-        emailInput.addEventListener('blur', function() {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(this.value)) {
-                this.classList.add('is-invalid');
-            } else {
-                this.classList.remove('is-invalid');
-                this.classList.add('is-valid');
-            }
-        });
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      let isValid = true;
+      
+      // 名前のバリデーション
+      const nameInput = document.getElementById('name');
+      if (!nameInput.value.trim()) {
+        showError(nameInput, '名前は必須です');
+        isValid = false;
+      } else {
+        clearError(nameInput);
+      }
+      
+      // メールアドレスのバリデーション
+      const emailInput = document.getElementById('email');
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(emailInput.value)) {
+        showError(emailInput, '有効なメールアドレスを入力してください');
+        isValid = false;
+      } else {
+        clearError(emailInput);
+      }
+      
+      // メッセージのバリデーション
+      const messageInput = document.getElementById('message');
+      if (!messageInput.value.trim()) {
+        showError(messageInput, 'メッセージは必須です');
+        isValid = false;
+      } else {
+        clearError(messageInput);
+      }
+      
+      if (!isValid) {
+        e.preventDefault();
+      }
+    });
+  }
+  
+  function showError(input, message) {
+    const formGroup = input.closest('.mb-3');
+    const errorDiv = formGroup.querySelector('.invalid-feedback') || document.createElement('div');
+    errorDiv.className = 'invalid-feedback';
+    errorDiv.textContent = message;
+    input.classList.add('is-invalid');
+    
+    if (!formGroup.querySelector('.invalid-feedback')) {
+      formGroup.appendChild(errorDiv);
     }
+  }
+  
+  function clearError(input) {
+    input.classList.remove('is-invalid');
+    input.classList.add('is-valid');
+  }
 });
