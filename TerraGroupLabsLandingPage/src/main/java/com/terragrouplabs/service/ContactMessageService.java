@@ -1,7 +1,6 @@
 // ContactMessageService.java の修正
 package com.terragrouplabs.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,11 +10,14 @@ import com.terragrouplabs.repository.ContactMessageRepository;
 @Service
 public class ContactMessageService {
 
-    @Autowired
-    private ContactMessageRepository contactRepository;
+    private final ContactMessageRepository contactRepository;
+    private final EmailService emailService;
     
-    @Autowired
-    private EmailService emailService;
+    // コンストラクタインジェクションに変更
+    public ContactMessageService(ContactMessageRepository contactRepository, EmailService emailService) {
+        this.contactRepository = contactRepository;
+        this.emailService = emailService;
+    }
     
     /**
      * お問い合わせメッセージを保存し、通知メールを送信します

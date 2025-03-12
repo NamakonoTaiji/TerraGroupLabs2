@@ -6,6 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +17,27 @@ import com.google.gson.JsonParser;
 @Service
 public class RecaptchaService {
 
-    @Value("${google.recaptcha.secret}")
-    private String recaptchaSecret;
-    
+    private static final Logger logger = LoggerFactory.getLogger(RecaptchaService.class);
     private static final String RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+    
+    private final String recaptchaSecret;
+    
+    // コンストラクタインジェクションに変更
+    public RecaptchaService(@Value("${google.recaptcha.secret}") String recaptchaSecret) {
+        this.recaptchaSecret = recaptchaSecret;
+    }
     
     public boolean verifyRecaptcha(String recaptchaResponse) {
     	
         if (recaptchaResponse == null || recaptchaResponse.isEmpty()) {
-            System.out.println("reCAPTCHA response is null or empty");
+            logger.warn("reCAPTCHA response is null or empty");
             return false;
         }
         
         try {
             String params = "secret=" + recaptchaSecret + "&response=" + recaptchaResponse;
-            System.out.println("Secret key: " + recaptchaSecret.substring(0, 3) + "..." + 
-                              (recaptchaSecret.length() > 6 ? recaptchaSecret.substring(recaptchaSecret.length() - 3) : ""));
+            logger.debug("Secret key: {}", recaptchaSecret.substring(0, 3) + "..." + 
+                        (recaptchaSecret.length() > 6 ? recaptchaSecret.substring(recaptchaSecret.length() - 3) : ""));
             
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -40,13 +47,12 @@ public class RecaptchaService {
                     .build();
             
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("reCAPTCHA API Response: " + response.body());
+            logger.debug("reCAPTCHA API Response: {}", response.body());
             
             JsonObject jsonObject = JsonParser.parseString(response.body()).getAsJsonObject();
             return jsonObject.get("success").getAsBoolean();
         } catch (IOException | InterruptedException e) {
-            System.out.println("Error during reCAPTCHA verification: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error during reCAPTCHA verification: {}", e.getMessage(), e);
             return false;
         }
     }

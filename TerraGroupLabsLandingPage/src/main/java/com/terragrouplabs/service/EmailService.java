@@ -1,6 +1,5 @@
 package com.terragrouplabs.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -10,8 +9,12 @@ import com.terragrouplabs.entity.ContactMessage;
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
+    
+    // コンストラクタインジェクションに変更
+    public EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
     
     public void sendContactNotification(ContactMessage message) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();

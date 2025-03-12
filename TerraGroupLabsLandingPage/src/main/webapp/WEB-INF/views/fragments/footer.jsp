@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ include file="/WEB-INF/views/common-taglibs.jsp" %>
 
 <!-- フッター -->
     <footer class="bg-dark text-white py-4 mt-5">
@@ -23,7 +22,7 @@
                 <div class="col-md-4 text-md-end">
                     <h5>お問い合わせ</h5>
                     <p class="small mb-2">お気軽にお問い合わせください。</p>
-                    <a href="${currentPage == 'home' ? '#contact' : '/'}#contact" class="btn btn-outline-light btn-sm">お問い合わせフォーム</a>
+                    <a href="${currentPage == 'home' ? '#contact' : '/#contact'}" class="btn btn-outline-light btn-sm">お問い合わせフォーム</a>
                 </div>
             </div>
             <hr class="my-4">

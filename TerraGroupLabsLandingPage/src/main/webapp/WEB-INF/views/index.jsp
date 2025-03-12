@@ -1,11 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ include file="/WEB-INF/views/common-taglibs.jsp" %>
 
 <c:set var="pageTitle" value="地球の未来をテクノロジーで創造する" />
 <c:set var="currentPage" value="home" />
-<c:set var="additionalScripts">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<c:set var="additionalHeadContent">
 </c:set>
 
 <jsp:include page="fragments/header.jsp" />
@@ -169,7 +167,7 @@
 							<span class="badge bg-primary-light text-primary me-2">防衛部門</span>
 							<small class="text-muted">2024.12.05</small>
 						</div>
-						<h4 class="card-title">TG-Sentinelシステムがドローンの高い迎撃率を記録</h4>
+						<h4 class="card-title">TG-Sentinelシステムがミサイルの飽和攻撃に対し高い迎撃率を記録</h4>
 						<p class="card-text">無人戦闘システムTG-Sentinelが飽和攻撃に対する高い抗堪性を示した。コストと信頼性を両立させた、ミサイルに代わる新しい防衛システム。</p>
 						<a href="#" class="btn btn-link p-0">詳細を読む <i
 							class="bi bi-arrow-right"></i></a>

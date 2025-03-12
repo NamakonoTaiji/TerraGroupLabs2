@@ -1,6 +1,5 @@
 package com.terragrouplabs.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,12 @@ import com.terragrouplabs.repository.ContactMessageRepository;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private ContactMessageRepository contactRepository;
+    private final ContactMessageRepository contactRepository;
+    
+    // コンストラクタインジェクションに変更
+    public AdminController(ContactMessageRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
     
     @GetMapping("/messages")
     public String listMessages(Model model) {

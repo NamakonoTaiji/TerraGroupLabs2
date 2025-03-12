@@ -83,7 +83,7 @@
 						href="<c:url value='/about'/>">会社概要</a></li>
 					<li class="nav-item"><a
 						class="nav-link ${currentPage == 'contact' ? 'active' : ''}"
-						href="${currentPage == 'home' ? '#contact' : '/'}#contact">お問い合わせ</a>
+						href="${currentPage == 'home' ? '#contact' : '/#contact'}">お問い合わせ</a>
 					</li>
 				</ul>
 			</div>

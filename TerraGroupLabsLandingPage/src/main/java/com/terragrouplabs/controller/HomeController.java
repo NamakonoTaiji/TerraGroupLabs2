@@ -1,6 +1,5 @@
 package com.terragrouplabs.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +11,15 @@ import com.terragrouplabs.service.ServiceService;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private ServiceService serviceService;
+    private final ServiceService serviceService;
     
     @Value("${google.recaptcha.key}")
     private String recaptchaSiteKey;
+    
+    // コンストラクタインジェクションに変更
+    public HomeController(ServiceService serviceService) {
+        this.serviceService = serviceService;
+    }
     
     @GetMapping("/")
     public String showHomePage(Model model) {
@@ -28,6 +31,9 @@ public class HomeController {
         
         // reCAPTCHAサイトキーを追加
         model.addAttribute("recaptchaSiteKey", recaptchaSiteKey);
+        
+        // ページ識別子を明示的に設定
+        model.addAttribute("currentPage", "home");
         
         return "index";
     }

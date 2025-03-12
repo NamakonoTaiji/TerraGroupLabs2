@@ -2,7 +2,6 @@ package com.terragrouplabs.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.terragrouplabs.entity.TerraService;
@@ -11,8 +10,12 @@ import com.terragrouplabs.repository.ServiceRepository;
 @Service
 public class ServiceService {
 
-    @Autowired
-    private ServiceRepository serviceRepository;
+    private final ServiceRepository serviceRepository;
+    
+    // コンストラクタインジェクションに変更
+    public ServiceService(ServiceRepository serviceRepository) {
+        this.serviceRepository = serviceRepository;
+    }
     
     /**
      * すべてのサービスを取得します
