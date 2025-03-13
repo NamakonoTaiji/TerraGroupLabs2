@@ -32,6 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 
+# windsurf
+.windsurf
+
 # 機密情報を含むファイル
 src/main/resources/application-dev.properties
 
