@@ -403,7 +403,17 @@ code, pre {
 
 /* 5.4 ヒーローセクション */
 .hero-section {
+	/* 通常の背景設定（フォールバック用） */
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg');
+  
+  /* image-set()を使ったWebP対応版 */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    image-set(
+      url('../images/webp/hero-bg.webp') type('image/webp'),
+      url('../images/hero-bg.jpg') type('image/jpeg')
+    );
+  
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -412,6 +422,24 @@ code, pre {
   display: flex;
   align-items: center;
 }
+
+.bg-hero {
+  background-image: 
+    linear-gradient(rgba(0, 30, 55, 0.8), rgba(0, 30, 55, 0.9)),
+    url('/images/webp/hero-bg.webp');
+  background-image: 
+    linear-gradient(rgba(0, 30, 55, 0.8), rgba(0, 30, 55, 0.9)),
+    image-set(
+      url('/images/webp/hero-bg.webp') type('image/webp'),
+      url('/images/jpg/hero-bg.jpg') type('image/jpeg')
+    );
+}
+
+/* WebP非対応ブラウザ向けフォールバック */
+.no-webp .hero-section {
+  background-image: url('/images/hero-bg.jpg');
+}
+
 /* ヒーローセクションのレスポンシブ調整 */
 @media (max-width: 768px) {
   .hero-section {

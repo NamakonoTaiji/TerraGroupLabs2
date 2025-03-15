@@ -9,11 +9,16 @@
 <title>${pageTitle}-TerraGroupLabs</title>
 
 <!-- ファビコン設定を追加 -->
-<link rel="icon" type="image/x-icon" href="<c:url value='/images/favicon/favicon.ico'/>">
-<link rel="icon" type="image/png" sizes="16x16" href="<c:url value='/images/favicon/favicon-16x16.png'/>">
-<link rel="icon" type="image/png" sizes="32x32" href="<c:url value='/images/favicon/favicon-32x32.png'/>">
-<link rel="apple-touch-icon" sizes="180x180" href="<c:url value='/images/favicon/apple-touch-icon.png'/>">
-<link rel="manifest" href="<c:url value='/images/favicon/site.webmanifest'/>">
+<link rel="icon" type="image/x-icon"
+	href="<c:url value='/images/favicon/favicon.ico'/>">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="<c:url value='/images/favicon/favicon-16x16.png'/>">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="<c:url value='/images/favicon/favicon-32x32.png'/>">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="<c:url value='/images/favicon/apple-touch-icon.png'/>">
+<link rel="manifest"
+	href="<c:url value='/images/favicon/site.webmanifest'/>">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,14 +37,33 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
 <!-- カスタムCSS -->
-<link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+<c:choose>
+	<c:when
+		test="${pageContext.request.serverName == 'localhost' || pageContext.request.serverName == '127.0.0.1'}">
+		<!-- 開発環境 -->
+		<link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+	</c:when>
+	<c:otherwise>
+		<!-- 本番環境 -->
+		<link rel="stylesheet" href="<c:url value='/css/styles.min.css'/>">
+	</c:otherwise>
+</c:choose>
 
 <!-- クリティカル画像のプリロード -->
 <link rel="preload" href="<c:url value='/images/logo.svg'/>" as="image">
+<!-- WebP形式のプリロード -->
+<link rel="preload" href="<c:url value='/images/webp/hero-bg.webp'/>"
+	as="image" type="image/webp" media="(min-width: 768px)">
+<!-- JPEG形式のフォールバック -->
 <link rel="preload" href="<c:url value='/images/hero-bg.jpg'/>"
-	as="image" media="(min-width: 768px)">
+	as="image" type="image/jpeg" media="(min-width: 768px)">
+<!-- WebP形式のプリロード -->
+<link rel="preload"
+	href="<c:url value='/images/webp/hero-bg-mobile.webp'/>" as="image" type="image/webp"
+	media="(max-width: 767px)">
+<!-- JPEG形式のフォールバック -->
 <link rel="preload" href="<c:url value='/images/hero-bg-mobile.jpg'/>"
-	as="image" media="(max-width: 767px)">
+	as="image" type="image/jpeg" media="(min-width: 768px)">
 
 <!-- SEO メタタグ -->
 <meta name="description"
@@ -56,7 +80,8 @@
 <meta property="og:type" content="website">
 <meta property="og:url"
 	content="<c:url value="${requestScope['javax.servlet.forward.request_uri']}"/>" />
-<meta property="og:image" content="<c:url value='/images/ogp.jpg'/>">
+<meta property="og:image"
+	content="<c:url value='/images/webp/hero-bg.webp'/>">
 <!-- カスタムスタイルとJSの挿入用 -->
 <c:if test="${not empty additionalHeadContent}">
         ${additionalHeadContent}

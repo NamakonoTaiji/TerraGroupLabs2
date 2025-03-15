@@ -11,6 +11,9 @@ function hasFormError() {
 window.addEventListener('DOMContentLoaded', function() {
   console.log('DOM fully loaded');
   
+  // 画像の遅延読み込みフォールバックを初期化
+  initLazyLoading();
+  
   // 最初にページ上部に移動
   window.scrollTo(0, 0);
   
@@ -261,4 +264,73 @@ function recaptchaCallback() {
       errorElement.remove();
     }
   }
+}
+
+// 画像の遅延読み込みフォールバック
+// native loading="lazy" 属性をサポートしていないブラウザ用
+function initLazyLoading() {
+  // ブラウザが loading="lazy" をサポートしているか確認
+  if ('loading' in HTMLImageElement.prototype) {
+    console.log('Browser supports native lazy loading');
+    return; // ネイティブサポートありの場合は何もしない
+  }
+  
+  console.log('Browser does not support native lazy loading, using fallback');
+  
+  // IntersectionObserver が利用可能か確認
+  if (!('IntersectionObserver' in window)) {
+    // IntersectionObserver もサポートしていない場合は全画像を読み込み
+    loadAllImages();
+    return;
+  }
+  
+  // IntersectionObserver を使用した遅延読み込みの実装
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        const src = img.getAttribute('data-src');
+        
+        if (src) {
+          img.setAttribute('src', src);
+          img.removeAttribute('data-src');
+        }
+        
+        observer.unobserve(img);
+      }
+    });
+  }, {
+    rootMargin: '200px 0px' // ビューポートの200px手前から読み込みを開始
+  });
+  
+  // loading="lazy" 属性を持つ画像を取得
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+  
+  lazyImages.forEach(img => {
+    // 元のsrcをdata-srcに移動
+    const src = img.getAttribute('src');
+    if (src) {
+      img.setAttribute('data-src', src);
+      
+      // プレースホルダー画像を設定（オプション）
+      // データ URI で軽量な半透明画像を設定するか、何も設定しない
+      img.setAttribute('src', 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E');
+    }
+    
+    // observerで監視
+    observer.observe(img);
+  });
+}
+
+// IntersectionObserverもサポートしていないブラウザ用のフォールバック
+function loadAllImages() {
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+  
+  lazyImages.forEach(img => {
+    // すべての画像を通常通り読み込む
+    const src = img.getAttribute('data-src');
+    if (src) {
+      img.setAttribute('src', src);
+    }
+  });
 }

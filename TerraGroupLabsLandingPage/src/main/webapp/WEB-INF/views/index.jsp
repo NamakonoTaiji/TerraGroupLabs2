@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="/WEB-INF/views/common-taglibs.jsp" %>
+<%@ include file="/WEB-INF/views/common-taglibs.jsp"%>
 
 <c:set var="pageTitle" value="地球の未来をテクノロジーで創造する" />
 <c:set var="currentPage" value="home" />
@@ -65,7 +65,7 @@
 <!-- 企業の展望、理念を表示するセクション -->
 <section class="section position-relative">
 	<div class="bg-image position-absolute w-100 h-100"
-		style="background: linear-gradient(rgba(0, 30, 55, 0.8), rgba(0, 30, 55, 0.9)), url('/images/tech-vision-bg.jpg'); background-size: cover; background-position: center;"></div>
+		style="background: linear-gradient(rgba(0, 30, 55, 0.8), rgba(0, 30, 55, 0.9)), url('/images/webp/tech-vision-bg.webp'); background-size: cover; background-position: center;"></div>
 	<div class="container position-relative text-white">
 		<div class="row">
 			<div class="col-lg-6 pt-3">
@@ -129,7 +129,10 @@
 		<div class="row g-4">
 			<div class="col-md-4">
 				<div class="card h-100 border-0 shadow-sm">
-					<img src="/images/news-1.jpg" class="card-img-top" alt="研究ニュース">
+					<picture>
+					<source srcset="/images/webp/news-1.webp" type="image/webp">
+					<img src="/images/jpg/news-1.jpg" class="card-img-top" alt="研究ニュース"
+						loading="lazy"> </picture>
 					<div class="card-body">
 						<div class="d-flex align-items-center mb-2">
 							<span class="badge bg-primary-light text-primary me-2">エネルギー部門</span>
@@ -145,7 +148,10 @@
 
 			<div class="col-md-4">
 				<div class="card h-100 border-0 shadow-sm">
-					<img src="/images/news-2.jpg" class="card-img-top" alt="研究ニュース">
+					<picture>
+					<source srcset="/images/webp/news-2.webp" type="image/webp">
+					<img src="/images/jpg/news-2.jpg" class="card-img-top" alt="研究ニュース"
+						loading="lazy"> </picture>
 					<div class="card-body">
 						<div class="d-flex align-items-center mb-2">
 							<span class="badge bg-primary-light text-primary me-2">バイオテック部門</span>
@@ -161,7 +167,10 @@
 
 			<div class="col-md-4">
 				<div class="card h-100 border-0 shadow-sm">
-					<img src="/images/news-3.jpg" class="card-img-top" alt="研究ニュース">
+					<picture>
+					<source srcset="/images/webp/news-3.webp" type="image/webp">
+					<img src="/images/jpg/news-3.jpg" class="card-img-top" alt="研究ニュース"
+						loading="lazy"> </picture>
 					<div class="card-body">
 						<div class="d-flex align-items-center mb-2">
 							<span class="badge bg-primary-light text-primary me-2">防衛部門</span>
@@ -198,8 +207,10 @@
 			<div class="col-md-4">
 				<div class="terra-card h-100">
 					<div class="card-img-top-container">
-						<img src="<c:url value='/images/energy-tech.jpg'/>"
-							class="card-img-top" alt="エネルギー技術">
+						<picture>
+						<source srcset="/images/webp/energy-tech.webp" type="image/webp">
+						<img src="<c:url value='/images/jpg/energy-tech.jpg'/>"
+							class="card-img-top" alt="エネルギー技術" loading="lazy"> </picture>
 						<div class="card-body p-4">
 							<div class="service-icon mb-4">
 								<i class="bi bi-lightning-charge-fill"></i>
@@ -222,8 +233,10 @@
 			<div class="col-md-4">
 				<div class="terra-card h-100">
 					<div class="card-img-top-container">
-						<img src="<c:url value='/images/defence-tech.jpg'/>"
-							class="card-img-top" alt="エネルギー技術">
+						<picture>
+						<source srcset="/images/webp/defence-tech.webp" type="image/webp">
+						<img src="<c:url value='/images/jpg/defence-tech.jpg'/>"
+							class="card-img-top" alt="防衛技術" loading="lazy"> </picture>
 						<div class="card-body p-4">
 							<div class="service-icon mb-4">
 								<i class="bi bi-shield-lock-fill"></i>
@@ -245,8 +258,10 @@
 			<div class="col-md-4">
 				<div class="terra-card h-100">
 					<div class="card-img-top-container">
-						<img src="<c:url value='/images/bio-tech.jpg'/>"
-							class="card-img-top" alt="エネルギー技術">
+						<picture>
+						<source srcset="/images/webp/bio-tech.webp" type="image/webp">
+						<img src="<c:url value='/images/jpg/bio-tech.jpg'/>"
+							class="card-img-top" alt="バイオテクノロジー" loading="lazy"> </picture>
 						<div class="card-body p-4">
 							<div class="service-icon mb-4">
 								<i class="bi bi-virus"></i>
@@ -293,7 +308,8 @@
 						<form:form id="contactForm" modelAttribute="contactMessage"
 							action="${pageContext.request.contextPath}/contact/confirm"
 							method="post" class="needs-validation" novalidate="true">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 							<div class="mb-4">
 								<label for="name" class="form-label">お名前 <span
 									class="text-danger">*</span></label>

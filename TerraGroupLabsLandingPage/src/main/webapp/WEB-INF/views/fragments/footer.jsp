@@ -39,7 +39,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- メインのJavaScriptファイル -->
-    <script src="<c:url value='/js/main.js'/>"></script>
+    <c:choose>
+        <c:when test="${pageContext.request.serverName == 'localhost' || pageContext.request.serverName == '127.0.0.1'}">
+            <!-- 開発環境 -->
+            <script src="<c:url value='/js/main.js'/>"></script>
+        </c:when>
+        <c:otherwise>
+            <!-- 本番環境 -->
+            <script src="<c:url value='/js/main.min.js'/>"></script>
+        </c:otherwise>
+    </c:choose>
     
     <!-- Google アナリティクス -->
     <c:if test="${not empty googleAnalyticsId}">
