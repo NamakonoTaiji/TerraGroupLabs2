@@ -16,18 +16,18 @@
 						<div class="card-body">
 							<div class="mb-4">
 								<h5>お名前</h5>
-								<p class="border-bottom pb-2">${contactMessage.name}</p>
+								<p class="border-bottom pb-2"><c:out value="${contactMessage.name}" /></p>
 							</div>
 
 							<div class="mb-4">
 								<h5>メールアドレス</h5>
-								<p class="border-bottom pb-2">${contactMessage.email}</p>
+								<p class="border-bottom pb-2"><c:out value="${contactMessage.email}" /></p>
 							</div>
 
 							<div class="mb-4">
 								<h5>お問い合わせ内容</h5>
 								<div class="border p-3 bg-light rounded">
-									${contactMessage.message}</div>
+									<c:out value="${contactMessage.message}" escapeXml="true" /></div>
 							</div>
 
 							<div class="d-flex justify-content-between mt-4">

@@ -293,6 +293,7 @@
 						<form:form id="contactForm" modelAttribute="contactMessage"
 							action="${pageContext.request.contextPath}/contact/confirm"
 							method="post" class="needs-validation" novalidate="true">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<div class="mb-4">
 								<label for="name" class="form-label">お名前 <span
 									class="text-danger">*</span></label>
@@ -328,7 +329,8 @@
 
 							<div class="mb-3">
 								<div class="g-recaptcha" data-sitekey="${recaptchaSiteKey}"
-									data-callback="recaptchaCallback"></div>
+									data-callback="recaptchaCallback" aria-label="reCAPTCHA チャレンジ"></div>
+								<p class="sr-only">このサイトはreCAPTCHAによって保護されており、Googleのプライバシーポリシーと利用規約が適用されます。</p>
 								<c:if test="${not empty recaptchaError}">
 									<div class="text-danger mt-2">${recaptchaError}</div>
 								</c:if>

@@ -100,11 +100,20 @@ public class ContactController {
 			RedirectAttributes redirectAttributes) {
 
 		try {
+			logger.info("お問い合わせフォームからの送信処理を開始: {}", contactMessage.getEmail());
+			
 			// フォームから受け取ったデータを保存
-			contactMessageService.saveMessage(contactMessage);
+			ContactMessage savedMessage = contactMessageService.saveMessage(contactMessage);
+			logger.info("お問い合わせデータの保存が完了しました: ID={}", savedMessage.getId());
 
-			// メール通知を送信
-			emailService.sendContactNotification(contactMessage);
+			try {
+				// メール通知を送信
+				emailService.sendContactNotification(contactMessage);
+				logger.info("お問い合わせ通知メールの送信が完了しました");
+			} catch (Exception emailError) {
+				// メール送信に失敗してもデータは保存されているので無視して続行
+				logger.error("お問い合わせ通知メールの送信に失敗しましたが、データは保存されました: {}", emailError.getMessage(), emailError);
+			}
 
 			// セッションにあるフォームデータをクリア
 			sessionStatus.setComplete();
@@ -115,7 +124,7 @@ public class ContactController {
 
 			return "redirect:/thankyou";
 		} catch (Exception e) {
-			logger.error("お問い合わせの処理中にエラーが発生しました", e);
+			logger.error("お問い合わせの処理中にエラーが発生しました: {}", e.getMessage(), e);
 			redirectAttributes.addFlashAttribute("errorMessage",
 					"処理中にエラーが発生しました。しばらくしてからもう一度お試しください。");
 			return "redirect:/?formError=true#contact";

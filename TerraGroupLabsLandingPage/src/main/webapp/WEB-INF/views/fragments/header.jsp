@@ -43,9 +43,11 @@
 
 <!-- SEO メタタグ -->
 <meta name="description"
-	content="${pageDescription != null ? pageDescription : 'TerraGroup Labs - 持続可能な社会の実現に向けた革新的な技術開発企業です。'}">
+	content="${pageDescription != null ? pageDescription : 'TerraGroup Labs - 持続可能な社会の実現に向けた革新的な技術開発企業です。環境技術や最先端バイオテクノロジーの研究開発を行っています。'}">
 <meta name="keywords"
-	content="TerraGroup Labs, 環境技術, 研究開発, バイオテクノロジー, 持続可能">
+	content="TerraGroup Labs, 環境技術, 研究開発, バイオテクノロジー, 持続可能, クリーンエネルギー, 先端技術, 環境ソリューション">
+<meta name="author" content="TerraGroup Labs">
+<meta name="robots" content="index, follow">
 
 <!-- OGP タグ -->
 <meta property="og:title" content="${pageTitle} - TerraGroup Labs">

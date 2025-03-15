@@ -22,9 +22,12 @@ public class WebConfig implements WebMvcConfigurer {
             @Override
             public void postHandle(HttpServletRequest request, HttpServletResponse response, 
                                   Object handler, ModelAndView modelAndView) {
+                // 基本的なセキュリティヘッダー
                 response.setHeader("X-Content-Type-Options", "nosniff");
                 response.setHeader("X-Frame-Options", "DENY");
                 response.setHeader("X-XSS-Protection", "1; mode=block");
+                response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+                response.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
                 
                 // 開発環境と本番環境で異なるCSP設定を使用
                 if ("dev".equals(activeProfile)) {
@@ -41,10 +44,12 @@ public class WebConfig implements WebMvcConfigurer {
                     response.setHeader("Content-Security-Policy", 
                         "default-src 'self'; " +
                         "script-src 'self' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; " +
-                        "style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; " +
+                        "style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com 'unsafe-inline'; " +
                         "img-src 'self' data: https://www.google.com https://www.gstatic.com; " +
-                        "font-src 'self' https://cdn.jsdelivr.net data:; " +
-                        "frame-src 'self' https://www.google.com https://recaptcha.google.com;");
+                        "font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com data:; " +
+                        "frame-src 'self' https://www.google.com https://recaptcha.google.com; " +
+                        "connect-src 'self'; " +
+                        "base-uri 'self';");
                 }
             }
         });

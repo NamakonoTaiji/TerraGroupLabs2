@@ -746,7 +746,27 @@ html {
 }
 
 /* ==========================================================================
-   8. メディアクエリ
+   8. アクセシビリティ
+   ========================================================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+input:focus, button:focus, a:focus, textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   9. メディアクエリ
    ========================================================================== */
 @media (max-width: 768px) {
   .section {
